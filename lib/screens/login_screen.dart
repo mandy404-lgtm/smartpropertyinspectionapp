@@ -13,14 +13,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   bool _isLoggingIn = false;
 
-  // 🔹 Login action (NO remember me)
   Future<void> _login() async {
     final username = _usernameController.text.trim();
 
     if (username.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter a username")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Please enter a username")));
       return;
     }
 
@@ -49,10 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
         width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color(0xFFB3E5FC), 
-              Color(0xFF81D4FA),
-            ],
+            colors: [Color(0xFFB3E5FC), Color(0xFF81D4FA)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -82,10 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const Text(
                   "Property Inspection App",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white70,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.white70),
                 ),
                 const SizedBox(height: 32),
 
@@ -116,13 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     child: _isLoggingIn
-                        ? const CircularProgressIndicator(
-                            color: Colors.white,
-                          )
-                        : const Text(
-                            "Login",
-                            style: TextStyle(fontSize: 18),
-                          ),
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text("Login", style: TextStyle(fontSize: 18)),
                   ),
                 ),
               ],

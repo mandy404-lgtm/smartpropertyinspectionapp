@@ -53,19 +53,20 @@ class DBService {
     map.remove('id'); // Let SQLite auto-generate ID
     return await db.insert('tbl_inspections', map);
   }
-  Future<Inspection?> getInspectionById(int id) async {
-  final db = await database;
-  final maps = await db.query(
-    'tbl_inspections',
-    where: 'id = ?',
-    whereArgs: [id],
-  );
 
-  if (maps.isNotEmpty) {
-    return Inspection.fromMap(maps.first);
+  Future<Inspection?> getInspectionById(int id) async {
+    final db = await database;
+    final maps = await db.query(
+      'tbl_inspections',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    if (maps.isNotEmpty) {
+      return Inspection.fromMap(maps.first);
+    }
+    return null;
   }
-  return null;
-}
 
   Future<int> updateInspection(Inspection inspection) async {
     if (inspection.id == null) return 0;
@@ -81,10 +82,6 @@ class DBService {
 
   Future<int> deleteInspection(int id) async {
     final db = await database;
-    return await db.delete(
-      'tbl_inspections',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    return await db.delete('tbl_inspections', where: 'id = ?', whereArgs: [id]);
   }
 }

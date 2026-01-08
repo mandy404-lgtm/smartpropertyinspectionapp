@@ -12,12 +12,10 @@ class InspectionDetailScreen extends StatefulWidget {
   const InspectionDetailScreen({super.key, required this.inspection});
 
   @override
-  State<InspectionDetailScreen> createState() =>
-      _InspectionDetailScreenState();
+  State<InspectionDetailScreen> createState() => _InspectionDetailScreenState();
 }
 
-class _InspectionDetailScreenState
-    extends State<InspectionDetailScreen> {
+class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
   late Inspection _inspection;
 
   @override
@@ -98,10 +96,7 @@ class _InspectionDetailScreenState
             ),
             const SizedBox(height: 24),
 
-            const Text(
-              "Photos",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+            const Text("Photos", style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
 
             SizedBox(
@@ -135,24 +130,23 @@ class _InspectionDetailScreenState
     );
 
     if (await canLaunchUrl(uri)) {
-      await launchUrl(
-        uri,
-        mode: LaunchMode.externalApplication,
-      );
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Could not open map")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Could not open map")));
     }
   }
 
   Future<void> _deleteInspection() async {
-    final confirm = await showDialog<bool>(
+    final confirm =
+        await showDialog<bool>(
           context: context,
           builder: (ctx) => AlertDialog(
             title: const Text("Delete Inspection"),
             content: const Text(
-                "Are you sure you want to delete this inspection?"),
+              "Are you sure you want to delete this inspection?",
+            ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx, false),
@@ -186,14 +180,14 @@ class _InspectionDetailScreenState
     final updated = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) =>
-            AddInspectionScreen(existingInspection: _inspection),
+        builder: (_) => AddInspectionScreen(existingInspection: _inspection),
       ),
     );
 
     if (updated == true) {
-      final refreshed = await DBService.instance
-          .getInspectionById(_inspection.id!);
+      final refreshed = await DBService.instance.getInspectionById(
+        _inspection.id!,
+      );
 
       if (refreshed != null) {
         setState(() {
