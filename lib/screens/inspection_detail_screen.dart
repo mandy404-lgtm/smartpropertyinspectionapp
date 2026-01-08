@@ -150,17 +150,17 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx, false),
-                child: const Text("Cancel"),
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.lightBlue[400],
                 ),
+                child: const Text("Cancel"),
               ),
               FilledButton(
                 onPressed: () => Navigator.pop(ctx, true),
-                child: const Text("Delete"),
                 style: FilledButton.styleFrom(
                   backgroundColor: Colors.lightBlue[400],
                 ),
+                child: const Text("Delete"),
               ),
             ],
           ),

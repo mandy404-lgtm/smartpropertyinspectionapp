@@ -169,17 +169,17 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx, false),
-                child: const Text("Cancel"),
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.lightBlue[400],
                 ),
+                child: const Text("Cancel"),
               ),
               FilledButton(
                 onPressed: () => Navigator.pop(ctx, true),
-                child: const Text("Update"),
                 style: FilledButton.styleFrom(
                   backgroundColor: Colors.lightBlue[400],
                 ),
+                child: const Text("Update"),
               ),
             ],
           ),
@@ -259,7 +259,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
             const SizedBox(height: 12),
 
             DropdownButtonFormField<String>(
-              value: _rating,
+              initialValue: _rating,
               decoration: const InputDecoration(
                 labelText: "Overall Rating",
                 border: OutlineInputBorder(),
